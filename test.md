@@ -1,6 +1,3 @@
-# FetchDataAnalytics
-This is an exercise for Fetch Summer Internship
-
 ```python
 %load_ext sql
 %sql sqlite:///Data.db
