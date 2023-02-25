@@ -1,0 +1,4 @@
+.import brands.csv Cities --csv
+.import city.csv Cities --csv
+.import city.csv Cities --csv
+.import city.csv Cities --csv
