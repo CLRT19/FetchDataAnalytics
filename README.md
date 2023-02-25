@@ -1,20 +1,6 @@
 # FetchDataAnalytics
 This is an exercise for Fetch Summer Internship
 
-```python
-%load_ext sql
-%sql sqlite:///Data.db
-```
-
-    The sql extension is already loaded. To reload it, use:
-      %reload_ext sql
-
-
-
-
-
-    'Connected: @Data.db'
-
 
 
 ## Question 1
@@ -32,10 +18,6 @@ GROUP BY b.NAME
 ORDER BY sum(i.TOTAL_FINAL_PRICE) DESC
 LIMIT 1;
 ```
-
-     * sqlite:///Data.db
-    Done.
-
 
 
 
@@ -72,10 +54,6 @@ GROUP BY u.ID
 ORDER BY sum(i.TOTAL_FINAL_PRICE) DESC
 LIMIT 1;
 ```
-
-     * sqlite:///Data.db
-    Done.
-
 
 
 
@@ -115,10 +93,6 @@ AND r.USER_ID = u.ID;
 
 ```
 
-     * sqlite:///Data.db
-    Done.
-
-
 
 
 
@@ -155,10 +129,6 @@ Where (i.TOTAL_FINAL_PRICE/i.QUANTITY_PURCHASED) = (e.TOTAL_FINAL_PRICE/e.QUANTI
 AND i.REWARDS_RECEIPT_ID = r.ID
 AND r.USER_ID = u.ID;
 ```
-
-     * sqlite:///Data.db
-    Done.
-
 
 
 
@@ -199,9 +169,6 @@ ORDER BY (TOTAL_FINAL_PRICE/QUANTITY_PURCHASED) DESC
 LIMIT 1;
 ```
 
-     * sqlite:///Data.db
-    Done.
-
 
 
 
@@ -235,10 +202,6 @@ FROM Items
 ORDER BY (TOTAL_FINAL_PRICE/QUANTITY_PURCHASED) DESC
 LIMIT 1;
 ```
-
-     * sqlite:///Data.db
-    Done.
-
 
 
 
@@ -295,11 +258,6 @@ FROM Receipts
 WHERE DATE_SCANNED LIKE '%-06-%';
 ```
 
-     * sqlite:///Data.db
-    Done.
-
-
-
 
 
 <table>
@@ -326,11 +284,6 @@ FROM(SELECT COUNT(USER_ID) as "Jan"
      WHERE DATE_SCANNED LIKE '%-01-%') as m1, (SELECT COUNT(USER_ID) as "Feb" FROM Receipts WHERE DATE_SCANNED LIKE '%-02-%') as m2, (SELECT COUNT(USER_ID) as "Mar" FROM Receipts WHERE DATE_SCANNED LIKE '%-03-%') as m3, (SELECT COUNT(USER_ID) as "Apr" FROM Receipts WHERE DATE_SCANNED LIKE '%-04-%') as m4, (SELECT COUNT(USER_ID) as "May" FROM Receipts WHERE DATE_SCANNED LIKE '%-05-%') as m5, (SELECT COUNT(USER_ID) as "Jun" FROM Receipts WHERE DATE_SCANNED LIKE '%-06-%') as m6, (SELECT COUNT(USER_ID) as "Jul" FROM Receipts WHERE DATE_SCANNED LIKE '%-07-%') as m7, (SELECT COUNT(USER_ID) as "Aug" FROM Receipts WHERE DATE_SCANNED LIKE '%-08-%') as m8, (SELECT COUNT(USER_ID) as "Sep" FROM Receipts WHERE DATE_SCANNED LIKE '%-09-%') as m9, (SELECT COUNT(USER_ID) as "Oct" FROM Receipts WHERE DATE_SCANNED LIKE '%-10-%') as m10, (SELECT COUNT(USER_ID) as "Nov" FROM Receipts WHERE DATE_SCANNED LIKE '%-11-%') as m11, (SELECT COUNT(USER_ID) as "Dec" FROM Receipts WHERE DATE_SCANNED LIKE '%-12-%') as m12
 
 ```
-
-     * sqlite:///Data.db
-    Done.
-
-
 
 
 
@@ -385,10 +338,6 @@ FROM(SELECT COUNT(DISTINCT USER_ID) as "Jan"
 
 ```
 
-     * sqlite:///Data.db
-    Done.
-
-
 
 
 
@@ -427,9 +376,3 @@ FROM(SELECT COUNT(DISTINCT USER_ID) as "Jan"
     </tbody>
 </table>
 
-
-
-
-```python
-
-```
