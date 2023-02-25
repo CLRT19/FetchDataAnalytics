@@ -2,7 +2,13 @@
 This is an exercise for Fetch Summer Internship
 
 
+# Section 1 ER Diagram
 
+![ER Diagram](pics/ERDiagram.png)
+
+
+
+# Section 2 SQL Queries
 ## Question 1
 Which brand saw the most dollars spent in the month of June?
 
@@ -376,3 +382,4 @@ FROM(SELECT COUNT(DISTINCT USER_ID) as "Jan"
     </tbody>
 </table>
 
+# Section 3 Noteworthy Findings
