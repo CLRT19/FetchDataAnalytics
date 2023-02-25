@@ -1,0 +1,17 @@
+drop table if exists Cities;
+
+CREATE TABLE
+    IF NOT EXISTS "Items" (
+        "REWARDS_RECEIPT_ID" TEXT,
+        "ITEM_INDEX" TEXT,
+        "REWARDS_RECEIPT_ITEM_ID" TEXT,
+        "DESCRIPTION" TEXT,
+        "BARCODE" TEXT,
+        "BRAND_CODE" TEXT,
+        "QUANTITY_PURCHASED" FLOAT(12, 2),
+        "TOTAL_FINAL_PRICE" FLOAT(12, 2),
+        "POINTS_EARNED" TEXT,
+        "REWARDS_GROUP" TEXT,
+        "ORIGINAL_RECEIPT_ITEM_TEXT" TEXT,
+        "MODIFY_DATE" TEXT
+    );

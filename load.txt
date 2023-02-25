@@ -1,4 +1,5 @@
 .import Data/brands.csv Brands --csv
-.import Data/receipt_items.csv Items --csv
+.import -skip 1 Data/receipt_items.csv Items --csv
+update Items set TOTAL_FINAL_PRICE = null where TOTAL_FINAL_PRICE = '';
 .import Data/receipts.csv Receipts --csv
 .import Data/users.csv User --csv
