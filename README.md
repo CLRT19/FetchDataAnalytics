@@ -1,5 +1,10 @@
 # FetchDataAnalytics
 This is an exercise for Fetch Summer Internship
+
+## Author: Linrong Cai
+My personal website: https://clrt19.com
+Chris Cai is my English Name
+
 ## Prerequisites
 - Python 3.8 or above
 - sqlite3
@@ -17,7 +22,15 @@ Use the run.sh to generate the Database and run the SQL queries with the file te
 ```bash
 sh run.sh
 ```
+Alternatively, you can run the following command in your terminal
+```bash
+sh question.sh
+```
+
+## Location
+README.md contains everyything for the exercise
 data.ipynb has all the code for section 3
+test.ipynb has all the SQL queries for section 2 and detailed explanation
 # Section 1 ER Diagram
 
 Underlined attribute is the key for each table
