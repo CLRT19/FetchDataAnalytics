@@ -1,7 +1,23 @@
 # FetchDataAnalytics
 This is an exercise for Fetch Summer Internship
+## Prerequisites
+- Python 3.8 or above
+- sqlite3
 
+I used Jupyter Notebook to record my SQL queries. To install Jupyter Notebook and sql for python, run the following command in your terminal
 
+```bash
+pip install --user --upgrade pip
+pip install --user --upgrade jupyter
+pip install --user --upgrade ipython-sql
+```
+
+## How to run the code
+Use the run.sh to generate the Database and run the SQL queries with the file test.ipynb
+```bash
+sh run.sh
+```
+data.ipynb has all the code for section 3
 # Section 1 ER Diagram
 
 Underlined attribute is the key for each table
@@ -263,30 +279,6 @@ We can calculate one user multiple times in one month.
 For example, a single user scanned 3 times in June, then the number of users scanned in June is 3.
 
 
-```sql
-%%sql
-SELECT COUNT(DATE_SCANNED) as "Number of receipts scanned in June"
-FROM Receipts
-WHERE DATE_SCANNED LIKE '%-06-%';
-```
-
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Number of receipts scanned in June</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>5405</td>
-        </tr>
-    </tbody>
-</table>
-
-
-
 
 ```sql
 %%sql
@@ -389,3 +381,89 @@ FROM(SELECT COUNT(DISTINCT USER_ID) as "Jan"
 </table>
 
 # Section 3 Noteworthy Findings
+
+## Sales per Month
+
+After finish question 5, I immediately noticed that the number of sales per month is increasing, while the number of unique users scanned in each month is 
+steady. This suggests that the average number of items purchased per user is increasing by month, and the spending is also likely to increase. 
+
+## Disttribution:
+
+The Distribution of number of users scanned has mean 5883.42 and standard deviation  1235.77
+
+![output1](pics/output.png)
+
+The Distribution of number of unique users scanned has mean 90.42 and standard deviation  3.55
+
+![output2](pics/output2.png)
+
+Use dividsion with the above two, and get the Distribution of average scanned per person in each month has mean 64.95 and standard deviation  13.50
+
+![output3](pics/output3.png)
+
+## Conclusion
+
+These distribution suggests for each individual user, they are likely to make more purchase as the month goes by. This is likely due to the fact that some major holidays are in the later months, and people are more likely to purchase gifts for their family and friends.
+
+## Suggestions
+
+I would suggest that the company should focus on the later months, and try to increase the number of unique users scanned in each month. This will likely increase the total sales for the company.
+
+## SQL Query to total spending per month
+
+```sql
+%%sql
+SELECT m1."Jan", m2."Feb", m3."Mar", m4."Apr", m5."May", m6."Jun", m7."Jul", m8."Aug", m9."Sep", m10."Oct", m11."Nov", m12."Dec"
+FROM(SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Jan"
+     FROM Items
+     WHERE MODIFY_DATE LIKE '%-01-%') as m1, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Feb" FROM Items WHERE MODIFY_DATE LIKE '%-02-%') as m2, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Mar" FROM Items WHERE MODIFY_DATE LIKE '%-03-%') as m3, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Apr" FROM Items WHERE MODIFY_DATE LIKE '%-04-%') as m4, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "May" FROM Items WHERE MODIFY_DATE LIKE '%-05-%') as m5, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Jun" FROM Items WHERE MODIFY_DATE LIKE '%-06-%') as m6, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Jul" FROM Items WHERE MODIFY_DATE LIKE '%-07-%') as m7, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Aug" FROM Items WHERE MODIFY_DATE LIKE '%-08-%') as m8, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Sep" FROM Items WHERE MODIFY_DATE LIKE '%-09-%') as m9, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Oct" FROM Items WHERE MODIFY_DATE LIKE '%-10-%') as m10, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Nov" FROM Items WHERE MODIFY_DATE LIKE '%-11-%') as m11, (SELECT ROUND(SUM(TOTAL_FINAL_PRICE),2) as "Dec" FROM Items WHERE MODIFY_DATE LIKE '%-12-%') as m12
+```
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>207651.49</td>
+            <td>156318.83</td>
+            <td>182730.82</td>
+            <td>197508.83</td>
+            <td>230472.18</td>
+            <td>257568.37</td>
+            <td>384211.49</td>
+            <td>406143.41</td>
+            <td>246454.94</td>
+            <td>282674.03</td>
+            <td>345410.1</td>
+            <td>422540.41</td>
+        </tr>
+    </tbody>
+</table>
+
+## Distribution of total spending per month with mean 276640.41 and standard deviation 87616.13
+![totalSales](pics/totalSale.png)
+
+Divide the total spending per month by the number of user scanned in each month and get the distribution of average spending per user scanned per month
+
+## Distribution of average spending per user scanned per month with mean 46.66 and standard deviation 8.94
+
+![avgSpending](pics/spendPerUserScanned.png)
+## Conclusion
+From the above distribution, we learn that the average spending per user scanned per month is highest during July and August. This is likely due to the fact that these two months are summer months, and people are more likely to go out and spend money on food and entertainment. In addition, schools are out during these two months, and people are more likely to spend money on their children. Peoplare are likely to spend money on expensive items during these two months. Even though the total spending is not the highest.
+## Suggestions
+I would suggest that the company that sales expensive items should focus on July and August, because people are likely to spend more money per purchase. For this reason, products like laptops and phones are likely to sell more during these two months. Companies that sells sepnsive items are likely to earn more profits by advertising their products more during these two months, and also by offering discounts during these two months.
